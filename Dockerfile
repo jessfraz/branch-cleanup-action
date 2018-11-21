@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 LABEL "com.github.actions.name"="Branch Cleanup"
