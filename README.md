@@ -4,7 +4,7 @@
 
 A GitHub action to automatically delete the branch after a pull request has been merged. 
 
-> **NOTE:** This will **never** delete a branch named "master". If the pull request is closed _without_ merging, it will **not** delete it.
+> **NOTE:** This will **never** delete the repository's default branch. If the pull request is closed _without_ merging, it will **not** delete it.
 
 
 ```
