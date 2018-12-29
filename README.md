@@ -6,6 +6,14 @@ A GitHub action to automatically delete the branch after a pull request has been
 
 > **NOTE:** This will **never** delete the repository's default branch. If the pull request is closed _without_ merging, it will **not** delete it.
 
+**Table of Contents**
+
+<!-- toc -->
+
+<!-- tocstop -->
+
+
+## Usage
 
 ```
 workflow "on pull request merge, delete the branch" {
@@ -21,7 +29,9 @@ action "branch cleanup" {
 
 ![demo](demo.png)
 
-### Tests
+## Contributing
+
+### Running the tests
 
 The tests use [shellcheck](https://github.com/koalaman/shellcheck). You don't
 need to install anything. They run in a container.
