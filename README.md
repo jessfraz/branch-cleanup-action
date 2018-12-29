@@ -10,8 +10,11 @@ A GitHub action to automatically delete the branch after a pull request has been
 
 <!-- toc -->
 
-<!-- tocstop -->
+- [Usage](#usage)
+- [Contributing](#contributing)
+  * [Running the tests](#running-the-tests)
 
+<!-- tocstop -->
 
 ## Usage
 
