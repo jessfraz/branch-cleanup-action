@@ -53,6 +53,7 @@ main(){
 
 		echo "Branch delete success!"
 	fi
+	exit 78
 }
 
 main "$@"
