@@ -33,7 +33,7 @@ main(){
 		owner=$(jq --raw-output .pull_request.head.repo.owner.login "$GITHUB_EVENT_PATH")
 		repo=$(jq --raw-output .pull_request.head.repo.name "$GITHUB_EVENT_PATH")
 		default_branch=$(
- 			curl -XGET -sSL \
+ 			curl -XGET -fsSL \
 				-H "${AUTH_HEADER}" \
  				-H "${API_HEADER}" \
 				"${URI}/repos/${owner}/${repo}" | jq .default_branch
@@ -46,7 +46,7 @@ main(){
 		fi
 
 		echo "Deleting branch ref $ref for owner ${owner}/${repo}..."
-		curl -XDELETE -sSL \
+		curl -XDELETE -fsSL \
 			-H "${AUTH_HEADER}" \
 			-H "${API_HEADER}" \
 			"${URI}/repos/${owner}/${repo}/git/refs/heads/${ref}"
