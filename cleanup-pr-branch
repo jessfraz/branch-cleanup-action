@@ -52,6 +52,7 @@ main(){
 			"${URI}/repos/${owner}/${repo}/git/refs/heads/${ref}"
 
 		echo "Branch delete success!"
+		exit 0
 	fi
 	exit 78
 }
