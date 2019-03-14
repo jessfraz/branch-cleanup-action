@@ -11,11 +11,6 @@ if [[ -z "$GITHUB_TOKEN" ]]; then
 	exit 1
 fi
 
-if [[ -z "$GITHUB_REPOSITORY" ]]; then
-	echo "Set the GITHUB_REPOSITORY env variable."
-	exit 1
-fi
-
 URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
