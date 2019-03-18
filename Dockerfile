@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Jessica Frazelle <jess@linux.com>
+LABEL maintainer="Jessica Frazelle <jess@linux.com>"
 
 LABEL "com.github.actions.name"="Branch Cleanup"
 LABEL "com.github.actions.description"="Delete the branch after a pull request has been merged"
