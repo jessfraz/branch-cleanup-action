@@ -55,7 +55,7 @@ main(){
 		echo "Branch delete success!"
 		exit 0
 	fi
-	exit NO_BRANCH_DELETED_EXIT_CODE
+	exit $NO_BRANCH_DELETED_EXIT_CODE
 }
 
 main "$@"
