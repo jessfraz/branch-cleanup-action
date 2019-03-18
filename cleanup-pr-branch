@@ -16,6 +16,12 @@ API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
+# Github Actions will mark a check as "neutral" (neither failed/succeeded) when you exit with code 78
+# But this will terminate any other Actions running in parallel in the same workflow.
+# Configuring this Environment Variable `NO_BRANCH_DELETED_EXIT_CODE=0` if no branch was deleted will let your workflow continue.
+# Docs: https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#exit-codes-and-statuses
+NO_BRANCH_DELETED_EXIT_CODE=${NO_BRANCH_DELETED_EXIT_CODE:-78}
+
 main(){
 	action=$(jq --raw-output .action "$GITHUB_EVENT_PATH")
 	merged=$(jq --raw-output .pull_request.merged "$GITHUB_EVENT_PATH")
@@ -49,7 +55,7 @@ main(){
 		echo "Branch delete success!"
 		exit 0
 	fi
-	exit 78
+	exit $NO_BRANCH_DELETED_EXIT_CODE
 }
 
 main "$@"
