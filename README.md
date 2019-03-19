@@ -40,7 +40,7 @@ action "branch cleanup" {
   secrets = ["GITHUB_TOKEN"]
 
   env = {
-    NO_BRANCH_DELETED_EXIT_CODE = 0
+    NO_BRANCH_DELETED_EXIT_CODE = "0"
   }
 }
 ```
