@@ -46,6 +46,21 @@ main(){
 			exit 0
 		fi
 
+		pulls_with_ref_as_base=$(
+			curl -XGET -fsSL \
+				-H "${AUTH_HEADER}" \
+				-H "${API_HEADER}" \
+				"${URI}/repos/${owner}/${repo}/pulls?state=open&base=${ref}"
+		)
+		has_pulls_with_ref_as_base=$(echo "$pulls_with_ref_as_base" | jq 'has(0)')
+
+		if [[ "$has_pulls_with_ref_as_base" != false ]]; then
+			# Do not delete if the branch is a base branch of another pull request
+			pr=$(echo "$pulls_with_ref_as_base" | jq '.[0].number')
+			echo "${ref} is the base branch of PR #${pr} for ${owner}/${repo}, exiting."
+			exit 0
+		fi
+
 		echo "Deleting branch ref $ref for owner ${owner}/${repo}..."
 		curl -XDELETE -fsSL \
 			-H "${AUTH_HEADER}" \
@@ -55,7 +70,7 @@ main(){
 		echo "Branch delete success!"
 		exit 0
 	fi
-	exit $NO_BRANCH_DELETED_EXIT_CODE
+	exit "$NO_BRANCH_DELETED_EXIT_CODE"
 }
 
 main "$@"
