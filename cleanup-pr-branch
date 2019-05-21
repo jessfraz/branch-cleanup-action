@@ -46,6 +46,19 @@ main(){
 			exit 0
 		fi
 
+		is_protected=$(
+			curl -XGET -fsSL \
+			-H "${AUTH_HEADER}" \
+			-H "${API_HEADER}" \
+			"${URI}/repos/${owner}/${repo}/branches/${ref}" | jq .protected
+		)
+
+		if [[ "$is_protected" == "true" ]]; then
+			# Never delete protected branches
+			echo "Will not delete protected branch (${ref}) for ${owner}/${repo}, exiting."
+			exit 0
+		fi
+
 		pulls_with_ref_as_base=$(
 			curl -XGET -fsSL \
 				-H "${AUTH_HEADER}" \
