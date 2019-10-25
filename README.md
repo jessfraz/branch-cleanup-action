@@ -18,31 +18,38 @@ A GitHub action to automatically delete the branch after a pull request has been
 
 ## Usage
 
-```
-workflow "on pull request merge, delete the branch" {
-  on = "pull_request"
-  resolves = ["branch cleanup"]
-}
-
-action "branch cleanup" {
-  uses = "jessfraz/branch-cleanup-action@master"
-  secrets = ["GITHUB_TOKEN"]
-}
+```yml
+name: branch-cleanup
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  cleanup-branch:
+    name: on pull request merge, delete the branch
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jessfraz/branch-cleanup-action@master
 ```
 
 If you include this in another Workflow, you may want to configure the environment variable `NO_BRANCH_DELETED_EXIT_CODE`. The default value for this is `78`, as Github Actions will mark a check as "neutral" (neither failed/succeeded) when you exit with code 78. This will however **cancel** any other actions running in parallel in this workflow.
 
 If you don't want it to cancel, configure your workflow as follows:
 
-```
-action "branch cleanup" {
-  uses = "jessfraz/branch-cleanup-action@master"
-  secrets = ["GITHUB_TOKEN"]
-
-  env = {
-    NO_BRANCH_DELETED_EXIT_CODE = "0"
-  }
-}
+```yml
+name: branch-cleanup
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  cleanup-branch:
+    name: on pull request merge, delete the branch
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jessfraz/branch-cleanup-action@master
+      env:
+        NO_BRANCH_DELETED_EXIT_CODE: 0
 ```
 
 ![demo](demo.png)
