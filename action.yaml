@@ -1,0 +1,9 @@
+name: "Branch cleanup"
+description: "A GitHub action to automatically delete the branch after a pull request has been merged. [Here's](https://blog.jessfraz.com/post/the-life-of-a-github-action/) a blog post describing this action in more detail."
+inputs:
+  secrets:
+    description: 'Github-Secret to use the github api'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
