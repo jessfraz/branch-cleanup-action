@@ -13,6 +13,7 @@ A GitHub action to automatically delete the branch after a pull request has been
 - [Usage](#usage)
 - [Contributing](#contributing)
   * [Running the tests](#running-the-tests)
+- [Succession](#succession)
 
 <!-- tocstop -->
 
@@ -56,3 +57,11 @@ The tests use [shellcheck](https://github.com/koalaman/shellcheck). You don't ne
 ```console
 $ make test
 ```
+
+## Succession
+As there is now a [feature to delete branches automatically](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-the-automatic-deletion-of-branches) after a merged PR this action might not be needed in all cases. Check if you still need this action for any reason of if the repository configuration solves your use case. 
+
+**Settings > General > Pull Requests > Automatically delete head branches**
+
+![screenshot](screenshot_auto_branch_deletion.png)
+
